@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient_bg"
+    tools:context=".Walkthrough">
+
+  <!--  <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:src="@drawable/sound_wave"
+        />-->
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:src="@mipmap/m_image"
+        />
+
+  <TextView
+      android:id="@+id/manage_attendance_heading"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_centerInParent="true"
+      android:paddingStart="80dp"
+      android:paddingEnd="80dp"
+      android:textAlignment="center"
+      android:textStyle="bold"
+      android:textSize="24sp"
+      android:text="Manage Attendance On The Go"
+      android:textColor="#FFFF"/>
+
+  <TextView
+      android:id="@+id/manage_attendance_content"
+      android:layout_below="@+id/manage_attendance_heading"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_centerInParent="true"
+      android:paddingTop="20dp"
+      android:paddingStart="30dp"
+      android:paddingEnd="30dp"
+      android:textAlignment="center"
+      android:textStyle="bold"
+      android:textSize="15sp"
+      android:text="Simple app designed to make your life easier. Directly sync your class attendance with Suchana."
+      android:textColor="#FFFF"/>
+
+  <Button
+      android:id="@+id/go_button"
+      android:background="@drawable/go_button_bg"
+      android:layout_margin="20dp"
+      android:layout_width="50dp"
+      android:layout_height="50dp"
+      android:text="Go"
+      android:textSize="24sp"
+      android:textColor="#32BED0"
+      android:layout_alignParentBottom="true"
+      android:layout_alignParentEnd="true"
+      android:layout_alignParentRight="true" />
+
+</RelativeLayout>
