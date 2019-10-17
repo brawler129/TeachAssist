@@ -59,8 +59,8 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.PersonViewHolder>{
     }
 
     public static interface subjectItemListener{
-        public void optionTakeAttendance(Integer pos);
-        public void optionViewAttendance();
+        void optionTakeAttendance(Integer pos);
+        void optionViewAttendance();
     }
 
     RVAdapter(List<Person> persons){
