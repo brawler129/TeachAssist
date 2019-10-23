@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.RelativeLayout;
 
 import java.util.ArrayList;
@@ -16,11 +17,13 @@ public class TakeAttendance extends AppCompatActivity {
     private RecyclerView rv1;
     private RecyclerView.LayoutManager layoutManager;
     private List<Student> students;
+    private Button update;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_take_attendance);
+        update=findViewById(R.id.update);
         rv1 =findViewById(R.id.rv1);
         layoutManager = new LinearLayoutManager(this);
         rv1.setLayoutManager(layoutManager);
@@ -44,9 +47,9 @@ public class TakeAttendance extends AppCompatActivity {
     }
     private void initializeData(){
         students = new ArrayList<>();
-        students.add(new Student("Aman Mishra", "1"));
-        students.add(new Student("Devesh Pradhan", "2"));
-        students.add(new Student("Devyanshu Pradhan", "3"));
+        students.add(new Student("Aman Mishra", 1));
+        students.add(new Student("Devesh Pradhan", 2));
+        students.add(new Student("Devyanshu Pradhan", 3));
     }
 
     private void initializeAdapter(){
