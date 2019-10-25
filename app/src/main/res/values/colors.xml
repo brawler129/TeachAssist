@@ -4,4 +4,5 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#0093E9</color>
     <color name="home_button_bg">#EAF9FA</color>
+    <color name="student_absent">#E95C2D</color>
 </resources>

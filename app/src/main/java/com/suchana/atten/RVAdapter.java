@@ -12,12 +12,14 @@ import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.suchana.atten.models.Subject;
+
 import java.util.List;
 
 public class RVAdapter extends RecyclerView.Adapter<RVAdapter.PersonViewHolder>{
 
     private Context context;
-    List<Person> persons;
+    private List<Subject> subjects;
 
     public class PersonViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
@@ -27,7 +29,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.PersonViewHolder>{
         private Button take;
         private Button vatten;
         private subjectItemListener subjectListener;
-        private Integer test;
+        private Integer adapterPos;
 
 
         public PersonViewHolder(View itemView,subjectItemListener subjectListener) {
@@ -46,8 +48,8 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.PersonViewHolder>{
         @Override
         public void onClick(View v){
             if(v.getId() == take.getId()){
-                test = getAdapterPosition();
-                subjectListener.optionTakeAttendance(test);
+                adapterPos = getAdapterPosition();
+                subjectListener.optionTakeAttendance(adapterPos);
             }
 
             else if(v.getId() == vatten.getId()){
@@ -63,12 +65,12 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.PersonViewHolder>{
         void optionViewAttendance();
     }
 
-    RVAdapter(List<Person> persons){
-        this.persons = persons;
+    public RVAdapter(List<Subject> subjects){
+        this.subjects = subjects;
     }
 
     public int getItemCount() {
-        return persons.size();
+        return subjects.size();
     }
 
     @Override
@@ -77,9 +79,9 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.PersonViewHolder>{
         RVAdapter.PersonViewHolder pvh = new PersonViewHolder(v, new subjectItemListener() {
             @Override
             public void optionTakeAttendance(Integer pos) {
-                //Toast toast = Toast.makeText(context,pos.toString(),Toast.LENGTH_SHORT);
-                //toast.show();
+                Toast toast = Toast.makeText(context,subjects.get(pos).sub_id,Toast.LENGTH_SHORT);
                 Intent intent =new Intent(context,TakeAttendance.class);
+                intent.putExtra("subjectId",subjects.get(pos).sub_id);
                 context.startActivity(intent);
 
             }
@@ -95,9 +97,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.PersonViewHolder>{
 
     @Override
     public void onBindViewHolder(PersonViewHolder personViewHolder, int i) {
-        personViewHolder.sub_id.setText(persons.get(i).sub_id);
-        personViewHolder.subject.setText(persons.get(i).subject);
-        personViewHolder.section.setText(persons.get(i).section);
+        personViewHolder.sub_id.setText(subjects.get(i).sub_id);
     }
 
     @Override
