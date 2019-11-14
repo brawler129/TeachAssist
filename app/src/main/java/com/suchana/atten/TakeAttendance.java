@@ -1,9 +1,11 @@
 package com.suchana.atten;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -31,7 +33,7 @@ public class TakeAttendance extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_take_attendance);
-        rv1 =findViewById(R.id.rv1);
+        rv1 =findViewById(R.id.student_list_rv);
         updateMarksButton = findViewById(R.id.upload_student_attendance);
         Intent intent = getIntent();
         subjectId = intent.getStringExtra("subjectId");
@@ -45,8 +47,36 @@ public class TakeAttendance extends AppCompatActivity {
         updateMarksButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                dbHelper.updateAttendance(adapter.getPresent_rollNo_list());
-                dbHelper.viewAttendance(subjectId);
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(TakeAttendance.this);
+
+                // Set a title for alert dialog
+                builder.setTitle("Update Attendance");
+
+                // Ask the final question
+                builder.setMessage("Are you sure?");
+
+                // Set the alert dialog yes button click listener
+                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dbHelper.updateAttendance(adapter.getPresent_rollNo_list());
+                        dbHelper.viewAttendance(subjectId);
+                        //return to home.class
+                    }
+                });
+
+                // Set the alert dialog no button click listener
+                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+
+                AlertDialog dialog = builder.create();
+                // Display the alert dialog on interface
+                dialog.show();
             }
         });
     }
