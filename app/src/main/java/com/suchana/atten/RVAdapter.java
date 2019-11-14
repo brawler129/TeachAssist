@@ -53,7 +53,8 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.PersonViewHolder>{
             }
 
             else if(v.getId() == vatten.getId()){
-                subjectListener.optionViewAttendance();
+                adapterPos = getAdapterPosition();
+                subjectListener.optionViewAttendance(adapterPos);
             }
 
         }
@@ -62,7 +63,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.PersonViewHolder>{
 
     public static interface subjectItemListener{
         void optionTakeAttendance(Integer pos);
-        void optionViewAttendance();
+        void optionViewAttendance(Integer pos);
     }
 
     public RVAdapter(List<Subject> subjects){
@@ -87,9 +88,11 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.PersonViewHolder>{
             }
 
             @Override
-            public void optionViewAttendance() {
+            public void optionViewAttendance(Integer pos) {
                 Toast toast = Toast.makeText(context,"View Attendance",Toast.LENGTH_SHORT);
-                toast.show();
+                Intent intent =new Intent(context,ViewAttendance.class);
+                intent.putExtra("subjectId",subjects.get(pos).sub_id);
+                context.startActivity(intent);
             }
         });
         return pvh;
