@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -29,6 +30,8 @@ public class TakeAttendance extends AppCompatActivity {
     private DatabaseHelper dbHelper;
     private Button updateMarksButton;
     private AttenAdapter adapter;
+    private Context context;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,6 +65,8 @@ public class TakeAttendance extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         dbHelper.updateAttendance(adapter.getPresent_rollNo_list());
                         dbHelper.viewAttendance(subjectId);
+                        Intent intent=new Intent(context,Home.class);
+                        startActivity(intent);
                         //return to home.class
                     }
                 });
@@ -70,7 +75,7 @@ public class TakeAttendance extends AppCompatActivity {
                 builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-
+                    //close the dialog
                     }
                 });
 
