@@ -1,9 +1,13 @@
 package com.suchana.atten;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -58,7 +62,36 @@ public class Home extends AppCompatActivity {
         uploadAttendanceBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                uploadAttendance();
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(Home.this);
+
+                // Set a title for alert dialog
+                builder.setTitle("Update Attendance");
+
+                // Ask the final question
+                builder.setMessage("Are you sure?");
+
+                // Set the alert dialog yes button click listener
+                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        uploadAttendance();
+                    }
+                });
+
+                // Set the alert dialog no button click listener
+                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //close the dialog
+                    }
+                });
+
+                AlertDialog dialog = builder.create();
+                // Display the alert dialog on interface
+                dialog.show();
+
+
             }
         });
     }
